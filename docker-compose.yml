@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    restart: always
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+    build: .
+    container_name: local-api
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/local-api
+    depends_on:
+      - mongo
+    # Uncomment if you want to auto-restart
+    restart: always
+
+  caddy:
+    image: caddy/caddy:2.7.3-alpine
+    container_name: caddy-server
+    restart: unless-stopped
+    platform: linux/amd64
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+
+
+
+volumes:
+  mongo-data: 
+  caddy_data:
+  caddy_config:

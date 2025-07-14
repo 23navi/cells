@@ -12,7 +12,7 @@ services:
 
   api:
     # build: .
-    image: 23navi/my-fullstack-app
+    image: navi23/my-fullstack-app
     container_name: local-api
     ports:
       - "3001:3001"

@@ -20,8 +20,8 @@ RUN npm install
 # Only copy API source files, not client
 COPY src ./src
 COPY tsconfig.json ./tsconfig.json
-# If you have a build step for TypeScript, add it here:
-# RUN npm run build
+
+RUN npm run build
 
 # --------- Stage 3: Production image ---------
 FROM --platform=linux/amd64 node:18-slim

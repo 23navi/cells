@@ -14,7 +14,7 @@ export const serve = (
   app.use(createCellsRouter());
 
   // Use path.join and __dirname for clarity
-  const clientBuildPath = path.join(__dirname, '..', 'local-client', 'build');
+  const clientBuildPath = path.join(__dirname, '..', 'client', 'build');
   app.use(express.static(clientBuildPath));
 
   app.get('*', (req, res) => {

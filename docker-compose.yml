@@ -17,7 +17,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/local-api
+      - MONGODB_URI=mongodb://mongo:27017/local-api
     depends_on:
       - mongo
     # Uncomment if you want to auto-restart
@@ -36,9 +36,6 @@ services:
       - $PWD/site:/srv
       - caddy_data:/data
       - caddy_config:/config
-
-
-
 
 volumes:
   mongo-data: 

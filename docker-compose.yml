@@ -16,8 +16,6 @@ services:
     container_name: local-api
     ports:
       - "3001:3001"
-    environment:
-      - MONGODB_URI=mongodb://mongo:27017/local-api
     depends_on:
       - mongo
     # Uncomment if you want to auto-restart

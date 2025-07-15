@@ -47,4 +47,5 @@ jobs:
             sudo git pull origin main || true
             sudo docker stop $(docker ps -q)
             sudo docker rm $(docker ps -aq)
+            sudo docker rmi ${{vars.IMAGE_NAME}}
             sudo ./run.sh

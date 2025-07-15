@@ -84,7 +84,6 @@ export const createCellsRouter = () => {
 
   // Replace all cells for a cell list
   router.post('/cells/:cellListName', async (req, res) => {
-    console.log("This is called")
     const { cellListName } = req.params; // Get cellListName from parameters
     const { cells }: { cells: Omit<Cell, 'cellList'>[] } = req.body;
 

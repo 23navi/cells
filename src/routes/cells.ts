@@ -84,9 +84,9 @@ export const createCellsRouter = () => {
 
   // Replace all cells for a cell list
   router.post('/cells/:cellListName', async (req, res) => {
+    console.log("This is called")
     const { cellListName } = req.params; // Get cellListName from parameters
     const { cells }: { cells: Omit<Cell, 'cellList'>[] } = req.body;
-    console.log({ cells });
 
     try {
       // 1. Find the CellList by its name to get its ID
@@ -103,7 +103,6 @@ export const createCellsRouter = () => {
 
       // 3. Insert new cells, associating them with the cellListId
       const cellsWithList = cells.map(cell => ({ ...cell, cellList: cellListId }));
-      console.log({ cellsWithList });
       await CellModel.insertMany(cellsWithList);
 
       res.send({ status: 'ok' });

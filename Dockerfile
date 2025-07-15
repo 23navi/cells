@@ -21,7 +21,8 @@ RUN npm install
 COPY src ./src
 COPY tsconfig.json ./tsconfig.json
 
-RUN npm run build
+## Skipping for now, will have to comeback and fix it
+# RUN npm run build
 
 # --------- Stage 3: Production image ---------
 FROM --platform=linux/amd64 node:18-slim

@@ -3,10 +3,19 @@
 }
 
 cells.navisureka.in {
-    reverse_proxy local-api:3001 {
-        # 👇 These are required for WebSocket upgrades
-        header_up Connection {>Connection}
-        header_up Upgrade {>Upgrade}
-        header_down Strict-Transport-Security max-age=31536000
+    route {
+        @readUpdateMethods {
+            method POST PUT PATCH
+        }
+
+        request_body @readUpdateMethods {
+            max_size 100MB
+        }
+
+        reverse_proxy local-api:3001 {
+            header_up Connection {>Connection}
+            header_up Upgrade {>Upgrade}
+            header_down Strict-Transport-Security max-age=31536000
+        }
     }
 }
